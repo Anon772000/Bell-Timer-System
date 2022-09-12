@@ -26,7 +26,7 @@ $arr3 = json_decode(file_get_contents('assets/json/exclude.json'), true);
 </div>
 <br><br>
 <div class="col-md-9 mr-auto ml-auto">
-<h5>Terms</h5>
+<h5>Active Periods</h5>
   <table id="myTable" style="width:100%">
 
   <tr>

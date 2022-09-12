@@ -44,7 +44,7 @@ $time =  date("H:i");
 
 </table>
 <div class="col-md-12 mr-auto ml-auto text-center"><br><br>
-<button type="submit" class="btn btn-success">Create term</button>
+<button type="submit" class="btn btn-success">Create Period</button>
 </div>
 </form>
 
