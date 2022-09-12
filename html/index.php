@@ -2,23 +2,9 @@
 include "assets/inc/header.inc.php";
 date_default_timezone_set('Australia/Sydney');
 $time =  date("H:i");
-ini_set('default_socket_timeout', 3);
-$url = "http://bellOne2.local/";
-$headers = @get_headers($url);
-if($headers && strpos( $headers[0], '200')) {
-    $status = "<span class='w3-tag w3-green'>Online</span>";
-}
-else {
-    $status = "<span class='w3-tag w3-red'>Offline</span>";
-}
-  
-
   
 ?>
 
-
-
-?>
 <style>
 .btn{
 
@@ -51,8 +37,7 @@ else {
     </div>
     <div class="row">
       <div class="col-md-6 mr-auto ml-auto text-center">
-        The Current time is <?=$time?> <br>
-        <p>Node status: <?=$status?></p>
+        The Current time is <?=$time?> <br>qq
         <br>
       </div>
     </div>
