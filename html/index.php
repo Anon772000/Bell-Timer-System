@@ -37,7 +37,7 @@ $time =  date("H:i");
     </div>
     <div class="row">
       <div class="col-md-6 mr-auto ml-auto text-center">
-        The Current time is <?=$time?> <br>qq
+        The Current time is <?=$time?> <br>
         <br>
       </div>
     </div>
