@@ -50,7 +50,7 @@ echo("<tr>
 
 
 <div class='text-center' style='margin-top:20px;'>
-<a type='button' class="btn btn-primary" href="TermSettings.php?id=<?=$usd?>">New Term</a>
+<a type='button' class="btn btn-primary" href="TermSettings.php?id=<?=$usd?>">New Period</a>
 </div>
   </div>
 <div class="col-md-9 mr-auto ml-auto">
