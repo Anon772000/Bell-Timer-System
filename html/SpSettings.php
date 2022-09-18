@@ -11,7 +11,7 @@ $temp = $arr1[$id]['Template'];
 <body>
 <div class="container">
 <div class="col-md-5 mr-auto ml-auto text-center">
-<img src="assets/img/logo/sixt5.png" style="height:10em;" alt="">
+<img src="assets/img/logo/Logo.jpg" style="height:10em;" alt="">
 </div>
 <div class="row">
   <div class="col-md-8 mr-auto ml-auto text-center">
