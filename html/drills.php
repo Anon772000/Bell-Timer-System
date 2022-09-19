@@ -11,7 +11,7 @@ $arr1 = json_decode(file_get_contents('assets/json/drills.json'), true);
 <a style="z-index:99;float:right;margin-right:5em;Margin-top:1em;"type='button' class="btn btn-primary" href="settings.php">Settings</a>
 </div>
 <div class="container">
-<div class="col-md-5 mr-auto ml-auto text-center">
+<div class="col-md-7 mr-auto ml-auto text-center">
 <img src="assets/img/logo/Logo.jpg" style="height:10em;" alt="">
 </div>
 <div class="row">
