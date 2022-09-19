@@ -44,7 +44,7 @@ session_start([
         <div class='input-group-prepend'>
           <span class='input-group-text'>Password</span>
         </div>
-        <input class='form-control' aria-label='bell' id='pass' name='pass'>
+        <input class='form-control' type='password'aria-label='bell' id='pass' name='pass'>
       </div>
       <div class="col-md-12 mr-auto ml-auto text-center"><br><br>
         <button type="submit" class="btn btn-success">Enter</button>
