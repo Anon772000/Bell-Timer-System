@@ -12,8 +12,14 @@ $uuid = uniqid();
 $arr1[$uuid] = $arry2;
 
 }
-
-
-if(file_put_contents("assets/json/drills.json",json_encode($arr1))){
-  header("location: drills.php");
-};
+file_put_contents("assets/json/drills.json",json_encode($arr1))
+if ($_SERVER['HTTP_HOST'] == "bells.djarragun.college"){
+  $send = http_build_query($_GET);
+  if(header("location: http://bells-node.djarragun.college/DrillNew.php?".$send)){
+    header("location: http://bells-node.djarragun.college/DrillNew.php?".$send);
+  }else{
+    header("location: http://bells.djarragun.college/drills.php");
+  }
+}else{
+  header("location: http://bells.djarragun.college/drills.php");
+}
