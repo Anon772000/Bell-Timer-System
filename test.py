@@ -4,7 +4,7 @@ from urllib.request import urlopen
 import json
 # store the URL in url as 
 # parameter for urlopen
-url = "http://BellOne1.local/assets/json/global.json"
+url = "http://bells.djarragun.college/assets/json/global.json"
   
 # store the response of URL
 response = urlopen(url)

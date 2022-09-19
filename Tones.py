@@ -72,7 +72,7 @@ def main(tone):
         BellSound.play()
         time.sleep(5)
         from urllib.request import urlopen
-        url = "http://BellOne2.local/RingBell.php?id=false"
+        url = "http://bells-node.djarragun.college/RingBell.php?id=false"
         urlopen(url)
         globalSettings['EVAC']['EVAC'] = "false"
         subprocess.call(['sudo pkill -9 -f Tones.py'], shell=True)
@@ -108,7 +108,7 @@ if __name__ == "__main__":
                     time.sleep(1)
                     if Cancel.is_pressed:
                         from urllib.request import urlopen
-                        url = "http://BellOne2.local/RingBell.php?id=false"
+                        url = "http://bells-node.djarragun.college/RingBell.php?id=false"
                         urlopen(url)
                         print('Cancel Button Pressed 3 Second')
                         logging.warning('| Cancel Button Pressed 3 Second')
@@ -126,7 +126,7 @@ if __name__ == "__main__":
             globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
             if globalSettings['EVAC']['EVAC'] == False:
                 from urllib.request import urlopen
-                url = "http://BellOne2.local/RingBell.php?id=false"
+                url = "http://bells-node.djarragun.college/RingBell.php?id=false"
                 urlopen(url)
                 print('Cancel Button Pressed 3 Second')
                 logging.warning('| Cancel Button Pressed 3 Second')

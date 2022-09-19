@@ -20,9 +20,9 @@ $arr1[$id]['bells'] = str_replace(array('[',']'), '',$arr1[$id]['bells']);
 
 
 file_put_contents("assets/json/Templates.json",json_encode($arr1));
-if ($_SERVER['HTTP_HOST'] == "bellone1.local"){
+if ($_SERVER['HTTP_HOST'] == "bells.djarragun.college"){
     $send = http_build_query($_GET);
-    header("location: http://BellOne2.Local/create.php?".$send);
+    header("location: http://bells-node.djarragun.college/create.php?".$send);
 }else{
-    header("location: http://BellOne1.Local/EditTemplate.php?id=".$id);
+    header("location: http://bells.djarragun.college/EditTemplate.php?id=".$id);
 }

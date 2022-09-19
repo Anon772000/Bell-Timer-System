@@ -357,7 +357,7 @@ def Buttons():
 def Tone(type):
     print(type)
     from urllib.request import urlopen
-    url = "http://BellOne2.local/RingBell.php?id="+type
+    url = "http://bells-node.djarragun.college/RingBell.php?id="+type
     urlopen(url)
     subprocess.call(["sudo python /etc/Bell-Timer-System/Tones.py " + type], shell=True)
 
