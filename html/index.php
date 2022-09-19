@@ -81,19 +81,26 @@ else {
     <br>
 <div class="separator-line separator-primary"></div>
 <br>
-    <div class="row">
-<div class="col text-center">
-        <a type='button' class="btn btn-primary btn-lg" href="Lockdown.php">Lockdown</a>
-      </div>
-      <div class="col text-center">
-        <a type='button' class="btn btn-warning btn-lg" href="Lockout.php">Shelter In Place</a>
-      </div>
-      <div class="col text-center">
-        <a type='button' class="btn btn-dark btn-lg " href="Cancel.php">Cancel</a>
-      </div>
+  <div class="row">
+    <div class="col text-center">
+      <a type='button' class="btn btn-primary btn-lg" href="Lockdown.php">Lockdown</a>
     </div>
-    <br><br>
+    <div class="col text-center">
+      <a type='button' class="btn btn-warning btn-lg" href="Lockout.php">Shelter In Place</a>
+    </div>
+    <div class="col text-center">
+      <a type='button' class="btn btn-dark btn-lg " href="Cancel.php">Cancel</a>
+    </div>
   </div>
+  <br>
+<div class="separator-line separator-primary"></div>
+<br>
+  <div class="row">
+    <div class="col text-center">
+      <a type='button' class="btn btn-primary btn-lg" href="signout.php">Sign Out</a>
+    </div>
+  </div><br><br>
+</div>
   </div>
 
 </body>
