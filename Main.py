@@ -177,8 +177,8 @@ def TimeLoop():
             system('clear')
             print("System Time :  " + currentTIme)
             globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
-            if globalSettings['EVAC']['EVAC'] != False:
-                Tone(globalSettings['EVAC']['EVAC'])
+            if 1 == 2:
+                Tone('bell')
             else:
                 # Drills
                 try:
@@ -353,13 +353,38 @@ def Buttons():
                         print('Bell Button Pressed 3 Second')
                         logging.warning('| Bell Button Pressed 3 Second')
                         Tone('lockout')
+        if Cancel.is_pressed:
+            print('Cancel Button Pressed')
+            logging.warning('| Cancel Button Pressed')
+            time.sleep(1)
+            if Cancel.is_pressed:
+                print('Cancel Button Pressed 1 Second')
+                logging.warning('| Cancel Button Pressed 1 Second')
+                time.sleep(1)
+                if Cancel.is_pressed:
+                    print('Cancel Button Pressed 2 Second')
+                    logging.warning('| Cancel Button Pressed 2 Second')
+                    time.sleep(1)
+                    if Cancel.is_pressed:
+                        print('Cancel Button Pressed 3 Second')
+                        logging.warning('| Cancel Button Pressed 3 Second')
+                        from urllib.request import urlopen
+                        url = "http://BellOne2.local/RingBell.php?id=false"
+                        try: 
+                            urlopen(url)
+                        except:
+                            logging.warning('| Error Node Offline..')
 
 def Tone(type):
     print(type)
     from urllib.request import urlopen
     url = "http://bells-node.djarragun.college/RingBell.php?id="+type
-    urlopen(url)
-    subprocess.call(["sudo python /etc/Bell-Timer-System/Tones.py " + type], shell=True)
+    try:
+        urlopen(url)
+    except:
+        logging.warning('| Error Node Offline..')
+    else:
+        subprocess.call(["sudo python /etc/Bell-Timer-System/Tones.py " + type], shell=True)
 
 
 

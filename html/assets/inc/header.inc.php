@@ -20,8 +20,10 @@ session_start([
   'cookie_lifetime' => 600,
 ]);
 
-if($_SESSION['pass'] == '605605'){
+if($_SESSION['pass'] == "S[AxiD7P|gm.a?'j"){
   
+}elseif ($_SESSION['pass'] == "DC@larms"){
+ 
 }else{
   header('location: login.php');
 }

@@ -39,9 +39,15 @@ else {
 </style>
 </head>
 <body>
+<?php
+  if($_SESSION['User'] == 'Admin'){
+    echo('
   <div class="fixed-top">
-    <a style="z-index:99;float:right;margin-right:5em;Margin-top:1em;"type='button' class="btn btn-primary btn-lg" href="settings.php">Settings</a>
+    <a style="z-index:99;float:right;margin-right:5em;Margin-top:1em;"type="button" class="btn btn-primary btn-lg" href="settings.php">Settings</a>
   </div>
+  ');
+  }
+?>
   <div class="container">
     <div class="col-md-7 mr-auto ml-auto text-center">
       <img src="assets/img/logo/Logo.jpg" style="height:10em;" alt="">
@@ -59,12 +65,17 @@ else {
         <div class="col text-center">
           <a type='button' class="btn btn-primary btn-lg" href="ManualBell.php">Manual Bell</a>
        </div>
+       <?php
+        if($_SESSION['User'] == 'Admin'){
+          echo('
         <div class="col text-center">
-          <a type='button' class="btn btn-primary btn-lg" href="BellTimings.php">Bell Timings</a>
+          <a type="button" class="btn btn-primary btn-lg" href="BellTimings.php">Bell Timings</a>
         </div>
         <div class="col text-center">
-          <a type='button' class="btn btn-success btn-lg" href="drills.php">Drills</a>    
-        </div>
+          <a type="button" class="btn btn-success btn-lg" href="drills.php">Drills</a>    
+        </div>');
+       }
+        ?>
     </div>
     <br>
 <div class="separator-line separator-primary"></div>
