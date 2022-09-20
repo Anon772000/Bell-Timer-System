@@ -21,3 +21,4 @@ if($_POST['pass'] == "S[AxiD7P|gm.a?'j"){
 }else{
     header('location: login.php?error=Wrong Password');
 }
+

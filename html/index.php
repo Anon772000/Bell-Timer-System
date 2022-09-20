@@ -40,7 +40,7 @@ else {
 </head>
 <body>
 <?php
-  if($_SESSION['User'] == 'Admin'){
+  if($_SESSION['admin'] == TRUE){
     echo('
   <div class="fixed-top">
     <a style="z-index:99;float:right;margin-right:5em;Margin-top:1em;"type="button" class="btn btn-primary btn-lg" href="settings.php">Settings</a>
@@ -66,7 +66,7 @@ else {
           <a type='button' class="btn btn-primary btn-lg" href="ManualBell.php">Manual Bell</a>
        </div>
        <?php
-        if($_SESSION['User'] == 'Admin'){
+        if($_SESSION['admin'] == TRUE){
           echo('
         <div class="col text-center">
           <a type="button" class="btn btn-primary btn-lg" href="BellTimings.php">Bell Timings</a>
