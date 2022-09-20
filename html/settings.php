@@ -81,7 +81,11 @@ echo("<tr>
 <a type='button' class="btn btn-primary" href="songs.php">New Song</a>
 </div>
 
-
+<br>
+<br>
+</br>
+<a type='button' class="btn btn-primary" href="/admin/NewUser.php">New User</a>
+</div>
 
   </div>
   </div>

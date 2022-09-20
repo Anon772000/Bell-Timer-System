@@ -134,9 +134,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="row">
     
       <div class="col-md-6 mr-auto ml-auto text-center">
-      <?php echo($username_er);
-      echo($password_err);
-      echo($login_err);
+      <?php echo("<span style='color:red'>$username_err</span>");
+      echo("<span style='color:red'>$password_err</span>");
+      echo("<span style='color:red'>$login_err</span>");
        ?>
       <form method='post'>
       <div class="form-group">

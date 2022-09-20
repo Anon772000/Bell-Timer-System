@@ -1,4 +1,19 @@
 <?php
+session_start([
+    'cookie_lifetime' => 600,
+  ]);
+  
+  if($_SESSION["loggedin"] == true){
+    
+  }else{
+    header('location: ../login.php');
+  }
+
+
+
+
+
+
 // Include config file
 require_once "../assets/inc/DB.inc.php";
  
@@ -94,6 +109,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($link);
 }
+$time =  date("H:i");
+ini_set('default_socket_timeout', 3);
+$url = "http://bells-node.djarragun.college/";
+$headers = @get_headers($url);
+if($headers && strpos( $headers[0], '200')) {
+    $status = "<span class='w3-tag w3-green'>Online</span>";
+}
+else {
+    $status = "<span class='w3-tag w3-red'>Offline</span>";
+}
 ?>
  
 <!DOCTYPE html>
@@ -107,8 +132,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         .wrapper{ width: 360px; padding: 20px; }
     </style>
 </head>
+
 <body>
-    <div class="wrapper">
+<div class="col-md-7 mr-auto ml-auto text-center">
+      <img src="../assets/img/logo/Logo.jpg" style="height:10em;" alt="">
+    </div>
+    <div class="row">
+      <div class="col-md-6 mr-auto ml-auto text-center">
+        The Current time is <?=$time?> <br>
+        <p>Node status: <?=$status?></p>
+        <br>
+      </div>
+    </div>
+    <br><br>
+        <div class="col-md-3 mr-auto ml-auto text-center">
         <p>Please fill this form to create an account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
@@ -130,9 +167,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="checkbox" class="form-check-input" id="admin" name="admin">
                 <label class="form-check-label" for="admin">Admin</label>
                 <span class="invalid-feedback"><?php echo $admin_err; ?></span>
-
-                <input type="checkbox" class="form-check-input" id="exampleCheck1" Checked>
-                <label class="form-check-label" for="exampleCheck1">Active</label>
+            </div>
+                <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="active" name="active" >
+                <label class="form-check-label" for="Active">Active</label>
                 <span class="invalid-feedback"><?php echo $active_err; ?></span>
             </div>
             <div class="form-group">
@@ -140,6 +178,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="reset" class="btn btn-secondary ml-2" value="Reset">
             </div>
         </form>
-    </div>    
+        </div>
+
 </body>
 </html>
