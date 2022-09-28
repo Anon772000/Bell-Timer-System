@@ -25,6 +25,7 @@ if($_SESSION["loggedin"] == true){
 }else{
   header('location: login.php');
 }
+$GLOBAL_JSON = json_decode(file_get_contents('assets/json/global.json'), true);
 
 
 ?>

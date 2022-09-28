@@ -5,11 +5,20 @@
     "EVAC": {
         "EVAC": false
     },
-    "Zones":{
-        "One" : true,
-        "Two" : true,
-        "Three" : false,
-        "Four" : false
+    "Zones": {
+        "One": true,
+        "Two": true,
+        "Three": false,
+        "Four": false
+    },
+    "NameSwaps": {
+        "Zones": {
+            "One": "1",
+            "Two": "2",
+            "Three": "3",
+            "Four": "4",
+            "All": "All"
+        },
+        "Term": "Term"
     }
-    
 }

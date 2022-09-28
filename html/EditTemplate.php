@@ -41,6 +41,34 @@ $name = $arr1[$id]['name'];
 
 foreach ($arr1[$id]['bells'] as $key => $value){
   $days = "";
+  $zone = "";
+  if(isset($value['Zone1'])){
+    if($value['Zone1'] == "on"){
+      $zone.= $GLOBAL_JSON['NameSwaps']['Zones']['One']." ";
+    }
+  }
+  if(isset($value['Zone2'] )){
+    if($value['Zone2'] == "on"){
+      $zone.=$GLOBAL_JSON['NameSwaps']['Zones']['Two']." ";
+    }
+  }
+  if(isset($value['Zone3'] )){
+    if($value['Zone3'] == "on"){
+      $zone.=$GLOBAL_JSON['NameSwaps']['Zones']['Three']." ";
+    }
+  }
+  if(isset($value['Zone4'] )){
+    if($value['Zone4'] == "on"){
+      $zone.=$GLOBAL_JSON['NameSwaps']['Zones']['Four']." ";
+    }
+  }
+  if(isset($value['All'])){
+    if($value['All'] == "on"){
+      $zone.=$GLOBAL_JSON['NameSwaps']['Zones']['All']." ";
+    }
+  }
+
+
   if(isset($value['monday'])){
     if($value['monday'] == "on"){
       $days.="Mon ";
@@ -118,7 +146,7 @@ foreach ($arr1[$id]['bells'] as $key => $value){
     </div>
     <select class='custom-select' id='inputGroupSelect01' disabled>
 
-    <option selected value='0'>".$value['zone']."</option>
+    <option selected value='0'>".$zone."</option>
     </select>
     </div>
     </td>

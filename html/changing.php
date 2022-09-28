@@ -24,7 +24,7 @@ file_put_contents("assets/json/Templates.json",json_encode($arr1));
 if ($_SERVER['HTTP_HOST'] == "bells.djarragun.college"){
     $send = http_build_query($_GET);
     if(header("location: http://bells-node.djarragun.college/changing.php?".$send)){
-        header("location: http://bells-node.djarragun.college/changing.php?".$send;
+        header("location: http://bells-node.djarragun.college/changing.php?".$send);
     }
         else{
             header("location: http://bells.djarragun.college/EditTemplate.php?id=".$id);

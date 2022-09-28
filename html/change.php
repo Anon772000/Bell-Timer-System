@@ -7,21 +7,27 @@ $id = $_GET['id'];
 $bellid = $_GET['bellid'];
 
 $arr1 = json_decode(file_get_contents('assets/json/Templates.json'), true);
-$mon = "";
-$tue = "";
-$wed = "";
-$thu = "";
-$fri = "";
-$sat = "";
-$sun = "";
-$weekdays = "";
-$weekends = "";
+$mon = $tue = $wed = $thu = $fri = $sat = $sun = $weekdays = $weekends = $Zone1 = $Zone2 = $Zone3 = $Zone4 = $All = "";
 
 
 
 $name = $arr1[$id]['bells'][$bellid]['name'];
 $time = $arr1[$id]['bells'][$bellid]['time'];
-$zone = $arr1[$id]['bells'][$bellid]['zone'];
+if (isset($arr1[$id]['bells'][$bellid]['Zone1'])){
+  $Zone1 = "checked";
+}
+if (isset($arr1[$id]['bells'][$bellid]['Zone2'])){
+  $Zone2 = "checked";
+}
+if (isset($arr1[$id]['bells'][$bellid]['Zone3'])){
+  $Zone3 = "checked";
+}
+if (isset($arr1[$id]['bells'][$bellid]['Zone4'])){
+  $Zone4 = "checked";
+}
+if (isset($arr1[$id]['bells'][$bellid]['All'])){
+  $All = "checked";
+}
 if (isset($arr1[$id]['bells'][$bellid]['monday'])){
   $mon = "checked";
 }
@@ -142,8 +148,8 @@ if (isset($arr1[$id]['bells'][$bellid]['weekends'])){
 </div>
 <input type="text" class="form-control" value="Weekdays" disabled>
 </div>
-
 </td>
+
 <td>
 <div class="input-group mb-3">
 <div class="input-group-prepend">
@@ -171,13 +177,78 @@ if (isset($arr1[$id]['bells'][$bellid]['weekends'])){
 </div>
 </td>
 
+
+</tr>
+<br/>
+<div class="separator-line separator-primary"></div>
+<tr style="
+    height: 1.5em;
+">
+
+</tr>
+<br/>
+<tr>
+<td>
+<div class="input-group mb-3" >
+<div class="input-group-prepend">
+<div class="input-group-text">
+  <input type="checkbox" id="Zone1" name="Zone1" <?=$Zone1?>>
+</div>
+</div>
+<input type="text" class="form-control" value="Zone: <?=$GLOBAL_JSON['NameSwaps']['Zones']['One']?>" disabled>
+</div>
+</td>
+<td>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<div class="input-group-text">
+  <input type="checkbox" id="Zone2" name="Zone2"<?=$Zone2?>>
+</div>
+</div>
+<input type="text" class="form-control" value="Zone: <?=$GLOBAL_JSON['NameSwaps']['Zones']['Two']?>" disabled>
+</div>
+</td>
+<td>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<div class="input-group-text">
+  <input type="checkbox" id="Zone3" name="Zone3"<?=$Zone3?>>
+</div>
+</div>
+<input type="text" class="form-control" value="Zone: <?=$GLOBAL_JSON['NameSwaps']['Zones']['Three']?>" disabled>
+</div>
+</td>
+</tr>
+<tr>
+
+<td>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<div class="input-group-text">
+  <input type="checkbox" id="Zone4" name="Zone4"<?=$Zone4?>>
+</div>
+</div>
+<input type="text" class="form-control" value="Zone: <?=$GLOBAL_JSON['NameSwaps']['Zones']['Two']?>" disabled>
+</div>
+</td>
+<td>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<div class="input-group-text">
+  <input type="checkbox" id="All" name="All"<?=$All?>>
+</div>
+</div>
+<input type="text" class="form-control" value="Zone: <?=$GLOBAL_JSON['NameSwaps']['Zones']['All']?>" disabled>
+</div>
+</td>
 </tr>
 <tr>
 <td class='text-center'>
     <div class='input-group '>
     <div class='input-group-prepend'>
     <label class='input-group-text' for='belltype'>Bell Type</label>
-    </div>                                                                                                  <select class='custom-select' id='belltype' name='belltype'>
+    </div>                                                                                                  
+    <select class='custom-select' id='belltype' name='belltype'>
 
     <?php
 $selectkey = $arr1[$id]['bells'][$bellid]['belltype'];
@@ -194,26 +265,6 @@ echo("<option selected value ='".$selectkey."'>Default Bell</option>");
     </select>
     </div>
     </td>
-    <td>
-<div class="input-group ">
-  <div class="input-group-prepend">
-    <label class="input-group-text" for="zone">Zone</label>
-  </div>
-  <select class="custom-select" id="zone" name="zone">
-    <option value="<?=$zone?>" selected><?=$zone?> </option>
-    <option value="ALL">All</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="1-2">1 & 2</option>
-    <option value="2-3">2 & 3</option>
-    <option value="3-4">3 & 4</option>
-    <option value="1-4">3 & 4</option>
-  </select>
-</div>
-
-</td>
 </tr>
 
 </table>
