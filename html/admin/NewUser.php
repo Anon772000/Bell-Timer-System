@@ -111,14 +111,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 $time =  date("H:i");
 ini_set('default_socket_timeout', 3);
-$url = "http://bells-node.djarragun.college/";
-$headers = @get_headers($url);
-if($headers && strpos( $headers[0], '200')) {
-    $status = "<span class='w3-tag w3-green'>Online</span>";
-}
-else {
-    $status = "<span class='w3-tag w3-red'>Offline</span>";
-}
+include "assets/inc/CheckOther.inc.php";
 ?>
  
 <!DOCTYPE html>
@@ -140,7 +133,7 @@ else {
     <div class="row">
       <div class="col-md-6 mr-auto ml-auto text-center">
         The Current time is <?=$time?> <br>
-        <p>Node status: <?=$status?></p>
+        <p><?=$status?></p>
         <br>
       </div>
     </div>
