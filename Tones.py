@@ -35,6 +35,7 @@ def main(tone):
         subprocess.call(['sudo pkill -9 -f RingLockdown.py'], shell=True)
         subprocess.call(['sudo pkill -9 -f RingLockout.py'], shell=True)
         subprocess.call(['sudo pkill -9 -f RingAlert.py'], shell=True)
+        channel = mixer.find_channel()
         channel = AlertRamp.play()
         channel.set_volume(0.0, 1.0)
         time.sleep(16)
@@ -49,7 +50,9 @@ def main(tone):
         subprocess.call(['sudo pkill -9 -f RingLockdown.py'], shell=True)
         subprocess.call(['sudo pkill -9 -f RingLockout.py'], shell=True)
         subprocess.call(['sudo pkill -9 -f RingAlert.py'], shell=True)
-        LockdownSound.play(-1)
+        channel = mixer.find_channel()
+        channel = LockdownSound.play()
+        channel.set_volume(0.0, 1.0)
         time.sleep(5)
     if tone == 'lockout':
         print('Lockout Play')
@@ -59,7 +62,9 @@ def main(tone):
         subprocess.call(['sudo pkill -9 -f RingLockdown.py'], shell=True)
         subprocess.call(['sudo pkill -9 -f RingLockout.py'], shell=True)
         subprocess.call(['sudo pkill -9 -f RingAlert.py'], shell=True)
-        LockoutSound.play(-1)
+        channel = mixer.find_channel()
+        channel = LockoutSound.play()
+        channel.set_volume(0.0, 1.0)
         time.sleep(5)
     if tone == 'bell':
         print('Man Bell Play')
@@ -69,13 +74,10 @@ def main(tone):
         subprocess.call(['sudo pkill -9 -f RingLockdown.py'], shell=True)
         subprocess.call(['sudo pkill -9 -f RingLockout.py'], shell=True)
         subprocess.call(['sudo pkill -9 -f RingAlert.py'], shell=True)
-        BellSound.play()
+        channel = mixer.find_channel()
+        channel = BellSound.play()
+        channel.set_volume(1.0, 0.0)
         time.sleep(5)
-        from urllib.request import urlopen
-        url = "http://bells-node.djarragun.college/RingBell.php?id=false"
-        urlopen(url)
-        globalSettings['EVAC']['EVAC'] = "false"
-        subprocess.call(['sudo pkill -9 -f Tones.py'], shell=True)
 
 if __name__ == "__main__":
     mixer.init(48000, -16, 2, 2048)
@@ -107,9 +109,6 @@ if __name__ == "__main__":
                     logging.warning('| Cancel Button Pressed 2 Second')
                     time.sleep(1)
                     if Cancel.is_pressed:
-                        from urllib.request import urlopen
-                        url = "http://bells-node.djarragun.college/RingBell.php?id=false"
-                        urlopen(url)
                         print('Cancel Button Pressed 3 Second')
                         logging.warning('| Cancel Button Pressed 3 Second')
                         mixer.stop()
@@ -122,24 +121,3 @@ if __name__ == "__main__":
                         logging.warning('| All Tones Canceled')
                         globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
                         break
-        else:
-            globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
-            if globalSettings['EVAC']['EVAC'] == False:
-                from urllib.request import urlopen
-                url = "http://bells-node.djarragun.college/RingBell.php?id=false"
-                urlopen(url)
-                print('Cancel Button Pressed 3 Second')
-                logging.warning('| Cancel Button Pressed 3 Second')
-                mixer.stop()
-                subprocess.call(['sudo pkill -9 -f RingEmergenceyEvacuation.py'], shell=True)
-                subprocess.call(['sudo pkill -9 -f RingLockdown.py'], shell=True)
-                subprocess.call(['sudo pkill -9 -f RingLockout.py'], shell=True)
-                subprocess.call(['sudo pkill -9 -f RingAlert.py'], shell=True)
-                subprocess.call(['sudo pkill -9 -f Tones.py'], shell=True)
-                print('All Tones Canceled')
-                logging.warning('| All Tones Canceled')
-                globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
-                globalSettings['EVAC']['EVAC'] = "false"
-                with open("/var/www/html/assets/json/global.json", "w") as outfile:
-                    json.dump(globalSettings, outfile)
-                break
