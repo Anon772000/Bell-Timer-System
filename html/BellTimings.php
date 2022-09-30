@@ -5,7 +5,7 @@ $time =  date("H:i");
 $usd  = uniqid();
 $arr1 = json_decode(file_get_contents('assets/json/termDates.json'), true);
 
-$arr2 = json_decode(file_get_contents('assets/json/special.json'), true);
+$arr2 = json_decode(file_get_contents('assets/json/specialday.json'), true);
 
 $arr3 = json_decode(file_get_contents('assets/json/exclude.json'), true);
 ?>
