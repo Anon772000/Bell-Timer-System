@@ -194,12 +194,12 @@ def TimeLoop():
                             DrillsDatesLoop()
                 # Special Days
                 try:
-                    json.load(open(webRoot + "html/assets/json/specialDay.json"))
+                    json.load(open(webRoot + "html/assets/json/specialday.json"))
                 except:
-                    logging.warning('| Error Loading specialDay.json Skipping..')
-                    print('| Error Loading specialDay.json Skipping..')
+                    logging.warning('| Error Loading specialday.json Skipping..')
+                    print('| Error Loading specialday.json Skipping..')
                 else:
-                    specialDay =json.load(open(webRoot + "html/assets/json/specialDay.json"))
+                    specialDay =json.load(open(webRoot + "html/assets/json/specialday.json"))
                     for x in specialDay:
                         if specialDay[x]["date"] == (dateToday):
                             SpecialDayLoop()
