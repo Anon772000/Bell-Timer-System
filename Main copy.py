@@ -1,4 +1,3 @@
-from fcntl import DN_DELETE
 import json
 import datetime as dt
 from os import system
@@ -105,14 +104,14 @@ def TermDatesLoop(id):
                         else:
                             if daytoday == DayOfTheWeek:
                                 try:
-                                    belltype = Template[id]['bells'][q]
+                                    belltype = Template[id]['bells'][q]['belltype']
                                 except KeyError:
                                     logging.warning(
                                         '| Bell Tryed to ring But Belltype Not Selected')
                                 else:
-                                    belltype = Template[id]['bells'][q]
+                                    belltype = Template[id]['bells'][q]['belltype']
                                     bell = threading.Thread(target=play, args=(
-                                        belltype))
+                                        belltype, (Template[id]['bells'][q]['zone'])))
                                     bell.start()
                                     time.sleep(60)
                                     q = q + 1
@@ -126,14 +125,14 @@ def TermDatesLoop(id):
                         else:
                             if daytoday == DayOfTheWeek:
                                 try:
-                                    belltype = Template[id]['bells'][q]
+                                    belltype = Template[id]['bells'][q]['belltype']
                                 except KeyError:
                                     logging.warning(
                                         '| Bell Tryed to ring But Belltype Not Selected')
                                 else:
-                                    belltype = Template[id]['bells'][q]
+                                    belltype = Template[id]['bells'][q]['belltype']
                                     bell = threading.Thread(target=play, args=(
-                                        belltype))
+                                        belltype, (Template[id]['bells'][q]['zone'])))
                                     bell.start()
                                     time.sleep(60)
                                     q = q + 1
@@ -146,14 +145,14 @@ def TermDatesLoop(id):
                         else:
                             if daytoday == DayOfTheWeek:
                                 try:
-                                    belltype = Template[id]['bells'][q]
+                                    belltype = Template[id]['bells'][q]['belltype']
                                 except KeyError:
                                     logging.warning(
                                         '| Bell Tryed to ring But Belltype Not Selected')
                                 else:
-                                    belltype = Template[id]['bells'][q]
+                                    belltype = Template[id]['bells'][q]['belltype']
                                     bell = threading.Thread(target=play, args=(
-                                        belltype))
+                                        belltype, (Template[id]['bells'][q]['zone'])))
                                     bell.start()
                                     time.sleep(60)
                                     q = q + 1
@@ -232,13 +231,8 @@ def TimeLoop():
             
             
 
-def play(BellData):
+def play(id,zone):
     print("Ringing Bell")
-    id = BellData['bellid']
-    if BellData['Zone1'].get('on'):
-        zone += '1'
-    if BellData['Zone2'].get('on'):
-        zone += '2'
     logging.warning('| Ringing Bell: '+id)
     try:
         data = json.load(open(webRoot + 'html/assets/json/sounds.json'))
@@ -247,13 +241,33 @@ def play(BellData):
         print('| Error Loading termDates.json Skipping..')
     else:
         data = json.load(open(webRoot + 'html/assets/json/sounds.json'))
-        if zone == "1":
+        if zone == "ALL":
+            subprocess.call(['ffplay -autoexit -nodisp "'+ webRoot+data[id]['dir']+'"'], shell=True) 
+            time.sleep(60)
+        elif zone == "1-2":
+            if globalSettings["Zones"]["One"] & globalSettings["Zones"]["Two"]== True :
+                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True) 
+                time.sleep(60)
+        elif zone == "3-4":
+            if globalSettings["Zones"]["Three"] & globalSettings["Zones"]["Four"]== True :
+                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True)
+                time.sleep(60)
+        elif zone == "1":
             if globalSettings["Zones"]["One"] == True:
                 subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c0=c0"'], shell=True)
                 time.sleep(60)
         elif zone == "2":
             if globalSettings["Zones"]["Two"] == True:
                 subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c1=c1"'], shell=True)
+                time.sleep(60)
+        elif zone == "3":
+            if globalSettings["Zones"]["Three"] == True:
+                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c0=c0"'], shell=True)
+                time.sleep(60)
+        elif zone == "4":
+            if globalSettings["Zones"]["Four"] == True:
+                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c1=c1"'], shell=True)
+                time.sleep(60)
         else:
             subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True)
             time.sleep(60)
