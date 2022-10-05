@@ -111,7 +111,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 $time =  date("H:i");
 ini_set('default_socket_timeout', 3);
-include "assets/inc/CheckOther.inc.php";
+include "../assets/inc/CheckOther.inc.php";
 ?>
  
 <!DOCTYPE html>

@@ -7,21 +7,21 @@ import threading
 import subprocess
 import logging
 from tokenize import Special
-import pytz
-from gpiozero import Button
+# import pytz
+# from gpiozero import Button
 logging.basicConfig(filename='BellTimerSystem.log',
                     format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 logging.warning('| System started Logging Online')
 # Global Varibales
-EvacButton = Button(17)
-AlertButton = Button(18)
-LockdownButton = Button(27)
-LockoutButton = Button(22)
-BellButton = Button(23)
-Cancel = Button(15)
-webRoot = "/var/www/"
+# EvacButton = Button(17)
+# AlertButton = Button(18)
+# LockdownButton = Button(27)
+# LockoutButton = Button(22)
+# BellButton = Button(23)
+# Cancel = Button(15)
+webRoot = ""
 globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
-TIMEZONE = globalSettings['TimeZone']['Zone']
+# TIMEZONE = globalSettings['TimeZone']['Zone']
 everyday = ("monday", "tuesday", "wednesday",
             "thursday", "friday", "saturday", "sunday")
 week = ("monday", "tuesday", "wednesday", "thursday", "friday")
@@ -29,7 +29,7 @@ weekend = ("saturday", "sunday")
 
 
 def SpecialDayLoop():
-    todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
+    todaysdate = dt.datetime.now()
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
     drillsDates = json.load(open(webRoot + "html/assets/json/drills.json"))
     for x in drillsDates:
@@ -45,7 +45,7 @@ def SpecialDayLoop():
 
 
 def DrillsDatesLoop():
-    todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
+    todaysdate = dt.datetime.now()
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
     drillsDates = json.load(open(webRoot + "html/assets/json/drills.json"))
     for x in drillsDates:
@@ -61,7 +61,7 @@ def DrillsDatesLoop():
 
 
 def ExcludeDatesLoop():
-    todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
+    todaysdate = dt.datetime.now()
     excludeDates = json.load(open(webRoot + "html/assets/json/exclude.json"))
     for x in excludeDates:
         if (todaysdate) == x["date"]:
@@ -71,7 +71,7 @@ def ExcludeDatesLoop():
 
 def TermDatesLoop(id):
     TIMEZONE = globalSettings['TimeZone']['Zone']
-    todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
+    todaysdate = dt.datetime.now()
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
     nextBell = ['23', '59']
     try:
@@ -168,7 +168,7 @@ def TermDatesLoop(id):
 def TimeLoop():
     while True:
             # Grabs real Time
-            todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
+            todaysdate = dt.datetime.now()
             dateToday = (todaysdate.strftime(
                 "%YYYY") + "-" + todaysdate.strftime("%MM") + "-" + todaysdate.strftime("%DD"))
             # Creates current hour and min
@@ -253,107 +253,120 @@ def play(BellData):
         else:
             subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True)
             time.sleep(60)
-def Buttons():
-    while True:
-        if EvacButton.is_pressed:
-            print('Evac Button Pressed')
-            logging.warning('| Evac Button Pressed')
-            time.sleep(1)
-            if EvacButton.is_pressed:
-                print('Evac Button Pressed 1 Second')
-                logging.warning('| Evac Button Pressed 1 Second')
-                time.sleep(1)
-                if EvacButton.is_pressed:
-                    print('Evac Button Pressed 2 Second')
-                    logging.warning('| Evac Button Pressed 2 Second')
-                    time.sleep(1)
-                    if EvacButton.is_pressed:
-                        print('Evac Button Pressed 3 Second')
-                        logging.warning('| Evac Button Pressed 3 Second')
-                        Tone('evac')
-        if AlertButton.is_pressed:
-            print('Alert Button Pressed')
-            logging.warning('| Alert Button Pressed')
-            time.sleep(1)
-            if AlertButton.is_pressed:
-                print('Alert Button Pressed 1 Second')
-                logging.warning('| Alert Button Pressed 1 Second')
-                time.sleep(1)
-                if AlertButton.is_pressed:
-                    print('Alert Button Pressed 2 Second')
-                    logging.warning('| Alert Button Pressed 2 Second')
-                    time.sleep(1)
-                    if AlertButton.is_pressed:
-                        print('Alert Button Pressed 3 Second')
-                        logging.warning('| Alert Button Pressed 3 Second')
-                        Tone('alert')
-        if BellButton.is_pressed:
-            print('Bell Button Pressed')
-            logging.warning('| Bell Button Pressed')
-            time.sleep(1)
-            if BellButton.is_pressed:
-                print('Bell Button Pressed 1 Second')
-                logging.warning('| Bell Button Pressed 1 Second')
-                time.sleep(1)
-                if BellButton.is_pressed:
-                    print('Bell Button Pressed 2 Second')
-                    logging.warning('| Bell Button Pressed 2 Second')
-                    time.sleep(1)
-                    if BellButton.is_pressed:
-                        print('Bell Button Pressed 3 Second')
-                        logging.warning('| Bell Button Pressed 3 Second')
-                        Tone('bell')
-        if LockdownButton.is_pressed:
-            print('LockdownButton Pressed')
-            logging.warning('| LockdownButton Pressed')
-            time.sleep(1)
-            if LockdownButton.is_pressed:
-                print('LockdownButton Pressed 1 Second')
-                logging.warning('| LockdownButton Pressed 1 Second')
-                time.sleep(1)
-                if LockdownButton.is_pressed:
-                    print('LockdownButton Pressed 2 Second')
-                    logging.warning('| LockdownButton Pressed 2 Second')
-                    time.sleep(1)
-                    if LockdownButton.is_pressed:
-                        print('LockdownButton Pressed 3 Second')
-                        logging.warning('| LockdownButton Pressed 3 Second')
-                        Tone('lockdown')
-        if LockoutButton.is_pressed:
-            print('Bell Button Pressed')
-            logging.warning('| Bell Button Pressed')
-            time.sleep(1)
-            if LockoutButton.is_pressed:
-                print('Bell Button Pressed 1 Second')
-                logging.warning('| Bell Button Pressed 1 Second')
-                time.sleep(1)
-                if LockoutButton.is_pressed:
-                    print('Bell Button Pressed 2 Second')
-                    logging.warning('| Bell Button Pressed 2 Second')
-                    time.sleep(1)
-                    if LockoutButton.is_pressed:
-                        print('Bell Button Pressed 3 Second')
-                        logging.warning('| Bell Button Pressed 3 Second')
-                        Tone('lockout')
-        if Cancel.is_pressed:
-            print('Cancel Button Pressed')
-            logging.warning('| Cancel Button Pressed')
-            time.sleep(1)
-            if Cancel.is_pressed:
-                print('Cancel Button Pressed 1 Second')
-                logging.warning('| Cancel Button Pressed 1 Second')
-                time.sleep(1)
-                if Cancel.is_pressed:
-                    print('Cancel Button Pressed 2 Second')
-                    logging.warning('| Cancel Button Pressed 2 Second')
-                    time.sleep(1)
-                    if Cancel.is_pressed:
-                        print('Cancel Button Pressed 3 Second')
-                        logging.warning('| Cancel Button Pressed 3 Second')
+# def Buttons():
+#     while True:
+#         if EvacButton.is_pressed:
+#             print('Evac Button Pressed')
+#             logging.warning('| Evac Button Pressed')
+#             time.sleep(1)
+#             if EvacButton.is_pressed:
+#                 print('Evac Button Pressed 1 Second')
+#                 logging.warning('| Evac Button Pressed 1 Second')
+#                 time.sleep(1)
+#                 if EvacButton.is_pressed:
+#                     print('Evac Button Pressed 2 Second')
+#                     logging.warning('| Evac Button Pressed 2 Second')
+#                     time.sleep(1)
+#                     if EvacButton.is_pressed:
+#                         print('Evac Button Pressed 3 Second')
+#                         logging.warning('| Evac Button Pressed 3 Second')
+#                         Tone('evac')
+#         if AlertButton.is_pressed:
+#             print('Alert Button Pressed')
+#             logging.warning('| Alert Button Pressed')
+#             time.sleep(1)
+#             if AlertButton.is_pressed:
+#                 print('Alert Button Pressed 1 Second')
+#                 logging.warning('| Alert Button Pressed 1 Second')
+#                 time.sleep(1)
+#                 if AlertButton.is_pressed:
+#                     print('Alert Button Pressed 2 Second')
+#                     logging.warning('| Alert Button Pressed 2 Second')
+#                     time.sleep(1)
+#                     if AlertButton.is_pressed:
+#                         print('Alert Button Pressed 3 Second')
+#                         logging.warning('| Alert Button Pressed 3 Second')
+#                         Tone('alert')
+#         if BellButton.is_pressed:
+#             print('Bell Button Pressed')
+#             logging.warning('| Bell Button Pressed')
+#             time.sleep(1)
+#             if BellButton.is_pressed:
+#                 print('Bell Button Pressed 1 Second')
+#                 logging.warning('| Bell Button Pressed 1 Second')
+#                 time.sleep(1)
+#                 if BellButton.is_pressed:
+#                     print('Bell Button Pressed 2 Second')
+#                     logging.warning('| Bell Button Pressed 2 Second')
+#                     time.sleep(1)
+#                     if BellButton.is_pressed:
+#                         print('Bell Button Pressed 3 Second')
+#                         logging.warning('| Bell Button Pressed 3 Second')
+#                         Tone('bell')
+#         if LockdownButton.is_pressed:
+#             print('LockdownButton Pressed')
+#             logging.warning('| LockdownButton Pressed')
+#             time.sleep(1)
+#             if LockdownButton.is_pressed:
+#                 print('LockdownButton Pressed 1 Second')
+#                 logging.warning('| LockdownButton Pressed 1 Second')
+#                 time.sleep(1)
+#                 if LockdownButton.is_pressed:
+#                     print('LockdownButton Pressed 2 Second')
+#                     logging.warning('| LockdownButton Pressed 2 Second')
+#                     time.sleep(1)
+#                     if LockdownButton.is_pressed:
+#                         print('LockdownButton Pressed 3 Second')
+#                         logging.warning('| LockdownButton Pressed 3 Second')
+#                         Tone('lockdown')
+#         if LockoutButton.is_pressed:
+#             print('Bell Button Pressed')
+#             logging.warning('| Bell Button Pressed')
+#             time.sleep(1)
+#             if LockoutButton.is_pressed:
+#                 print('Bell Button Pressed 1 Second')
+#                 logging.warning('| Bell Button Pressed 1 Second')
+#                 time.sleep(1)
+#                 if LockoutButton.is_pressed:
+#                     print('Bell Button Pressed 2 Second')
+#                     logging.warning('| Bell Button Pressed 2 Second')
+#                     time.sleep(1)
+#                     if LockoutButton.is_pressed:
+#                         print('Bell Button Pressed 3 Second')
+#                         logging.warning('| Bell Button Pressed 3 Second')
+#                         Tone('lockout')
+#         if Cancel.is_pressed:
+#             print('Cancel Button Pressed')
+#             logging.warning('| Cancel Button Pressed')
+#             time.sleep(1)
+#             if Cancel.is_pressed:
+#                 print('Cancel Button Pressed 1 Second')
+#                 logging.warning('| Cancel Button Pressed 1 Second')
+#                 time.sleep(1)
+#                 if Cancel.is_pressed:
+#                     print('Cancel Button Pressed 2 Second')
+#                     logging.warning('| Cancel Button Pressed 2 Second')
+#                     time.sleep(1)
+#                     if Cancel.is_pressed:
+#                         print('Cancel Button Pressed 3 Second')
+#                         logging.warning('| Cancel Button Pressed 3 Second')
+#                         from urllib.request import urlopen
+#                         url = "http://BellOne2.local/RingBell.php?id=false"
+#                         try: 
+#                             urlopen(url)
+#                         except:
+#                             logging.warning('| Error Node Offline..')
 
 def Tone(type):
     print(type)
-    subprocess.call(["sudo python /etc/Bell-Timer-System/Tones.py " + type], shell=True)
+    from urllib.request import urlopen
+    url = "http://bells-node.djarragun.college/RingBell.php?id="+type
+    try:
+        urlopen(url)
+    except:
+        logging.warning('| Error Node Offline..')
+    else:
+        subprocess.call(["sudo python /etc/Bell-Timer-System/Tones.py " + type], shell=True)
 
 
 
@@ -361,7 +374,7 @@ def Tone(type):
 if __name__ == "__main__":
     logging.warning("Creating Threads")
     x = threading.Thread(target=TimeLoop)
-    buttons = threading.Thread(target=Buttons)
+    # buttons = threading.Thread(target=Buttons)
     logging.warning("Starting Threads")
     x.start()
-    buttons.start()
+    # buttons.start()
