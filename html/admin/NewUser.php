@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $username = trim($_POST["username"]);
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Oops! Something went wrong. Please try again later. CODE: USERNAME_ERROR";
             }
 
             // Close statement
@@ -98,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Redirect to login page
                 header("location: ../login.php");
             } else{
-                echo "Oops! Something went wrong. Please try again later or Contact IT support.";
+                echo "Oops! Something went wrong. Please try again later or Email IT support at harrison@sixt5.com.au CODE: STMT_ERROR.";
             }
 
             // Close statement

@@ -74,9 +74,9 @@ include "assets/inc/CheckOther.inc.php";
 <div class="separator-line separator-primary"></div>
 <br>
     <div class="row">
-<div class="col text-center">
+<!-- <div class="col text-center">
         <a type='button'style='background-color:#ff9933; border-color:#ff9933;' class="btn btn-primary btn-lg" href="Alert.php">Alert</a>
-      </div>
+      </div> -->
       <div class="col text-center">
         <a type='button' class="btn btn-danger btn-lg" href="EmergencyEvacuation.php">Evacuation</a>
       </div>
@@ -89,9 +89,9 @@ include "assets/inc/CheckOther.inc.php";
     <div class="col text-center">
       <a type='button' class="btn btn-primary btn-lg" href="Lockdown.php">Lockdown</a>
     </div>
-    <div class="col text-center">
+    <!-- <div class="col text-center">
       <a type='button' class="btn btn-warning btn-lg" href="Lockout.php">Shelter In Place</a>
-    </div>
+    </div> -->
     <div class="col text-center">
       <a type='button' class="btn btn-dark btn-lg " href="Cancel.php">Cancel</a>
     </div>
