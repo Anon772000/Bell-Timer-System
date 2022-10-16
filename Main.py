@@ -160,7 +160,7 @@ def TimeLoop():
             system('clear')
             print("System Time :  " + currentTIme)
             globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
-            if globalSettings['EVAC']['EVAC'] == True:
+            if 1 == 2:
                 TimeLoop()
             else:
                 # Drills
