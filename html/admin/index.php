@@ -88,7 +88,7 @@ $link->close();
 </table>
 <div class="text-center" >
 </br>
-<a type='button' class="btn btn-primary" href="newuser.php">New User</a>
+<a type='button' class="btn btn-primary" href="NewUser.php">New User</a>
 </div>
 
   </div>

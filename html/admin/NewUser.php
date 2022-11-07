@@ -82,32 +82,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
-        // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, admin, active) VALUES (?, ?, ?, ?)";
-         
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $param_username, $param_password, $param_admin, $param_active);
             
-            // Set parameters
-            $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Redirect to login page
-                header("location: index.php");
-            } else{
-                echo "Oops! Something went wrong. Please try again later or Email IT support at harrison@sixt5.com.au CODE: STMT_ERROR.";
-            }
-
-            // Close statement
-            mysqli_stmt_close($stmt);
+        // Set parameters
+        $param_username = $username;
+        $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+        $sql = "INSERT INTO users (username, password, admin, active) VALUES ('".$param_username."', '".$param_password."', '".$param_admin."', '".$param_active."')";
+        // Attempt to execute the prepared statement
+        if ($link->query($sql) === TRUE) {
+            header("location: index.php");
+        } else {
+            echo "Oops! Something went wrong. Please try again later or Email IT support at harrison@sixt5.com.au CODE: " . $sql . "<br>" . $link->error;
         }
+
+        $link->close();
     }
     
-    // Close connection
-    mysqli_close($link);
 }
 $time =  date("H:i");
 ini_set('default_socket_timeout', 3);
