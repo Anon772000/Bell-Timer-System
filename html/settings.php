@@ -84,7 +84,8 @@ echo("<tr>
 <br>
 <br>
 </br>
-<a type='button' class="btn btn-primary" href="/admin/NewUser.php">New User</a>
+<div class="text-center" >
+<a type='button' class="btn btn-primary" href="/admin/index.php">User Control</a>
 </div>
 
   </div>
