@@ -92,11 +92,16 @@ include "assets/inc/CheckOther.inc.php";
     <!-- <div class="col text-center">
       <a type='button' class="btn btn-warning btn-lg" href="Lockout.php">Shelter In Place</a>
     </div> -->
-    <div class="col text-center">
-      <a type='button' class="btn btn-dark btn-lg " href="Cancel.php">Cancel</a>
-    </div>
+    
   </div>
   <br>
+  <div class="separator-line separator-primary"></div>
+<br>
+  <div class="row">
+  <div class="col text-center">
+      <a type='button' <?php    if ($GLOBAL_JSON['EVAC']['EVAC'] == true) {echo('class="btn btn-dark btn-lg"'); }else{echo('class="btn btn-secondary btn-lg" style="color:lightgrey"');}; ?> href="Cancel.php">Cancel</a>
+    </div>
+  </div><br>
 <div class="separator-line separator-primary"></div>
 <br>
   <div class="row">
