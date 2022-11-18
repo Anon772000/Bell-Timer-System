@@ -12,15 +12,10 @@ $uuid = uniqid();
 $arr1[$uuid] = $arry2;
 
 }
-file_put_contents("assets/json/special.json",json_encode($arr1))
-if ($_SERVER['HTTP_HOST'] == "bells.djarragun.college"){
-  $send = http_build_query($_GET);
-  if(header("location: http://bells-node.djarragun.college/Spnew.php?".$send)){
-      header("location: http://bells-node.djarragun.college/Spnew.php?".$send);
-  }else{
-      header("location: http://bells.djarragun.college/BellTimings.php");
-  }
+
+if (file_put_contents("assets/json/special.json",json_encode($arr1))){
+  header("location: BellTimings.php");
 }else{
-  header("location: http://bells.djarragun.college/BellTimings.php");
+  header("location: BellTimings.php");
 }
 
