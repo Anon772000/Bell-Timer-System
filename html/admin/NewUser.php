@@ -18,7 +18,7 @@ session_start([
 require_once "../assets/inc/DB.inc.php";
  
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = $admin = $active = "";
+$username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = $admin_err = $active_err = "";
  
 // Processing form data when form is submitted
@@ -38,8 +38,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Set parameters
             $param_username = trim($_POST["username"]);
-            $param_admin = isset($_POST["admin"]);
-            $param_active = isset($_POST["active"]);
+            if(isset($_POST["admin"])){
+                $param_admin = 1;
+            }else{
+                $param_admin = 0;
+            }
+            if(isset($_POST["active"])){
+                $param_active = 1;
+            }else{
+                $param_active = 0;
+            }
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){

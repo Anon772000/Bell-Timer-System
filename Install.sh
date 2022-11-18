@@ -26,3 +26,4 @@ echo "---Replacing ini"
 sudo rm -rf /etc/php/7.4/cli/php.ini
 sudo mv /etc/Bell-Timer-System/php.ini /etc/php/7.4/cli/
 sudo service apache2 restart
+echo "-- Remember to always check sudo perms [sudo visudo]"1

@@ -19,7 +19,7 @@ if(isset($_GET['error'])){
 }else{
   $err = "";
 }
-date_default_timezone_set('Australia/Sydney');
+date_default_timezone_set('Australia/Lindeman');
 $time =  date("H:i");
 session_start([
   'cookie_lifetime' => 600,

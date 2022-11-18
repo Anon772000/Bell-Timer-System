@@ -1,6 +1,6 @@
 <?php
 include "assets/inc/header.inc.php";
-date_default_timezone_set('Australia/Sydney');
+date_default_timezone_set('Australia/Lindeman');
 $time =  date("H:i");
 $error="";
 $id = $_GET['id'];

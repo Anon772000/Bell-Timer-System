@@ -9,7 +9,7 @@ if($_SESSION["loggedin"] == true){
   header('location: ../login.php');
 }
 require_once "../assets/inc/DB.inc.php";
-date_default_timezone_set('Australia/Sydney');
+date_default_timezone_set('Australia/Lindeman');
 $time =  date("H:i");
 ini_set('default_socket_timeout', 3);
 
